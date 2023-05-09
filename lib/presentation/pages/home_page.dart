@@ -32,8 +32,10 @@ class HomePage extends StatelessWidget {
                   BottomNavigationBarItem(
                       label: "About us", icon: Icon(Icons.info)),
                 ],
-                currentIndex: 0,
-                onTap: (value) {},
+                currentIndex: cubit.currentIndex,
+                onTap: (value) {
+                  cubit.changeBottomNav(value);
+                },
               ),
               floatingActionButton: SpeedDial(
                 backgroundColor: MyColors.lightGreen,

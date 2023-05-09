@@ -10,6 +10,11 @@ class AppCubit extends Cubit<AppStates> {
 
   static AppCubit get(context) => BlocProvider.of(context);
 
+  int currentIndex = 0;
+  void changeBottomNav(int index) {
+    currentIndex = index;
+  }
+
   File? pickedVideo;
   final ImagePicker picker = ImagePicker();
   Future<void> getVideoFromGallery() async {
@@ -43,5 +48,4 @@ class AppCubit extends Cubit<AppStates> {
       emit((VideoNotPickedFromGalleryState()));
     }
   }
-  
 }
