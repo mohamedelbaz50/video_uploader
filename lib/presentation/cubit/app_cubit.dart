@@ -28,8 +28,7 @@ class AppCubit extends Cubit<AppStates> {
   double maxDouble = double.negativeInfinity;
 
   String maxString = "";
- 
- 
+  Map<String, double> doubleMap = {};
 
   Dio dio = Dio();
 
@@ -93,7 +92,6 @@ class AppCubit extends Cubit<AppStates> {
         data: formData,
       );
       if (response.statusCode == 200) {
-     
         response.data.forEach((key, value) {
           doubleMap[key] = double.parse(value);
         });
@@ -113,7 +111,6 @@ class AppCubit extends Cubit<AppStates> {
       print(error);
     }
   }
-
 
   Future videoPlay({required int index}) async {
     final videoPlayerController = VideoPlayerController.file(videos[index]);
