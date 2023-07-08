@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:video_uploader/core/themes/colors.dart';
 import 'package:video_uploader/presentation/cubit/app_cubit.dart';
 import 'package:video_uploader/presentation/cubit/app_states.dart';
-import 'package:video_uploader/presentation/pages/home_page.dart';
+import 'package:video_uploader/presentation/pages/choose_page.dart';
+import 'package:video_uploader/presentation/pages/home_page_for_words.dart';
 import 'package:video_uploader/presentation/widgets/custom_text_form_field.dart';
 
 class LoginPage extends StatelessWidget {
@@ -41,7 +42,7 @@ class LoginPage extends StatelessWidget {
                               image: AssetImage("assets/images/login.jpg"))),
                     ),
                     Text(
-                      "Login",
+                      "تسجيل الدخول",
                       style: TextStyle(
                           color: MyColors.lightPurple,
                           fontSize: 30,
@@ -51,13 +52,13 @@ class LoginPage extends StatelessWidget {
                       height: 10,
                     ),
                     CustomTextFormField(
-                        label: "Email",
-                        hintText: "Enter you email address",
+                        label: "البريد الالكترونى",
+                        hintText: "أدخل البريد الالكترونى",
                         controller: emailController,
                         textInputType: TextInputType.emailAddress),
                     CustomTextFormField(
-                        label: "password",
-                        hintText: "Enter you password",
+                        label: "كلمة السر",
+                        hintText: "أدخل كلمة السر",
                         controller: passwordController,
                         textInputType: TextInputType.visiblePassword),
                     Row(
@@ -66,7 +67,7 @@ class LoginPage extends StatelessWidget {
                         InkWell(
                           onTap: () {},
                           child: Text(
-                            "forget password?",
+                            "نسيت كلمة السر؟",
                             style: TextStyle(
                                 fontSize: 15, color: MyColors.lightPurple),
                           ),
@@ -82,19 +83,19 @@ class LoginPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          "Don't have an Account?",
-                          style: TextStyle(fontSize: 13, color: Colors.black),
+                        InkWell(
+                          onTap: () {},
+                          child: Text("أنشىء حساب",
+                              style: TextStyle(
+                                  fontSize: 14, color: MyColors.lightPurple)),
                         ),
                         const SizedBox(
                           width: 2,
                         ),
-                        InkWell(
-                          onTap: () {},
-                          child: Text("Create Account",
-                              style: TextStyle(
-                                  fontSize: 14, color: MyColors.lightPurple)),
-                        )
+                        const Text(
+                          "لا تمتلك حساب؟",
+                          style: TextStyle(fontSize: 13, color: Colors.black),
+                        ),
                       ],
                     ),
                     const SizedBox(
@@ -105,7 +106,7 @@ class LoginPage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomePage()));
+                                builder: (context) => const ChoosePage()));
                       },
                       child: Container(
                         width: double.infinity,
@@ -115,7 +116,7 @@ class LoginPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20)),
                         child: const Center(
                             child: Text(
-                          "Enter as a guest",
+                          "ادخل كضيف",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,

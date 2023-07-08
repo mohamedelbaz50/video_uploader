@@ -1,8 +1,9 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:video_uploader/presentation/cubit/app_states.dart';
+
 class DialogBuild extends StatelessWidget {
-  const DialogBuild({ required this.state, required this.text});
+  const DialogBuild({required this.state, required this.text});
   final AppStates state;
   final String text;
 
@@ -21,21 +22,23 @@ class DialogBuild extends StatelessWidget {
               condition: state is! GetDataLoadingState,
               fallback: (context) =>
                   const Center(child: CircularProgressIndicator()),
-              builder: (context) => Text(
-                text,
-                style:
-                    const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              builder: (context) => Center(
+                child: Text(
+                  text,
+                  style: const TextStyle(
+                      fontSize: 30, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 8,
+              height: MediaQuery.of(context).size.height / 10,
             ),
             ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
                 child: const Text(
-                  'close',
+                  'اغلاق',
                   style: TextStyle(color: Colors.white, fontSize: 18.0),
                 ))
           ],
@@ -44,5 +47,3 @@ class DialogBuild extends StatelessWidget {
     );
   }
 }
-
-

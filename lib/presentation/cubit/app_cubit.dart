@@ -9,18 +9,20 @@ import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 import 'package:video_uploader/presentation/cubit/app_states.dart';
 import 'package:video_uploader/presentation/pages/about_us_page.dart';
-import 'package:video_uploader/presentation/pages/home_page.dart';
+import 'package:video_uploader/presentation/pages/home_page_for_words.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
+
   static AppCubit get(context) => BlocProvider.of(context);
 
   int currentIndex = 0;
 
   File? pickedVideo;
+  File? pickedImage;
 
   List<File> videos = [];
-  List<Widget> bottomNavPages = [HomePage(), const AboutUsPage()];
+  List<Widget> bottomNavPages = [HomePageForWords(), const AboutUsPage()];
   ImagePicker picker = ImagePicker();
   late VideoPlayerController controller;
   late FlickManager flickManager;
@@ -85,7 +87,7 @@ class AppCubit extends Cubit<AppStates> {
       });
 
       final Response response = await dio.post(
-        "http://10.0.2.2:8000/prediction/",
+        "http://10.0.2.2:8000/prediction/word",
         options: Options(
             contentType: 'application/json',
             sendTimeout: const Duration(seconds: 20)),
@@ -120,5 +122,81 @@ class AppCubit extends Cubit<AppStates> {
       controller.play();
       emit(PlayVideoState());
     });
+  }
+
+  List<File> images = [];
+
+  Future<void> getImageFromCamera() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+
+    if (pickedFile != null) {
+      pickedImage = File(pickedFile.path);
+      images.add(pickedImage!);
+      if (kDebugMode) {
+        print(pickedFile.path);
+      }
+      emit(VideoPickedFromGalleryState());
+    } else {
+      if (kDebugMode) {
+        print('No Video selected.');
+      }
+      emit((VideoNotPickedFromGalleryState()));
+    }
+  }
+
+  Future<void> getImageFromGallery() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      pickedImage = File(pickedFile.path);
+      images.add(pickedImage!);
+      if (kDebugMode) {
+        print(images);
+      }
+      emit(VideoPickedFromGalleryState());
+    } else {
+      if (kDebugMode) {
+        print('No Video selected.');
+      }
+      emit((VideoNotPickedFromGalleryState()));
+    }
+  }
+
+  Map<String, dynamic> value = {};
+  uploadImageForNumber({required int index}) async {
+    try {
+      FormData formData = FormData.fromMap({
+        "file": await MultipartFile.fromFile(images[index].path),
+      });
+      final Response response = await dio.post(
+        "http://10.0.2.2:8000/prediction/number",
+        options: Options(
+            contentType: 'application/json',
+            sendTimeout: const Duration(seconds: 20)),
+        data: formData,
+      );
+      value = response.data;
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  uploadImageForChar({required int index}) async {
+    try {
+      FormData formData = FormData.fromMap({
+        "file": await MultipartFile.fromFile(images[index].path),
+      });
+      final Response response = await dio.post(
+        "http://10.0.2.2:8000/prediction/alphabet",
+        options: Options(
+            contentType: 'application/json',
+            sendTimeout: const Duration(seconds: 20)),
+        data: formData,
+      );
+      print(response);
+      value = response.data;
+    } catch (error) {
+      print(error);
+    }
   }
 }

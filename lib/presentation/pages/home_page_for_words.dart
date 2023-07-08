@@ -9,8 +9,8 @@ import 'package:video_uploader/presentation/pages/dialog.dart';
 
 import '../../core/themes/colors.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+class HomePageForWords extends StatelessWidget {
+  HomePageForWords({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
                           : Container()
                     ],
                     title: Text(
-                        cubit.currentIndex == 0 ? "My Videos" : "About Us"),
+                        cubit.currentIndex == 0 ? "فيديوهاتى" : "تعرف علينا"),
                   ),
                   body: cubit.currentIndex == 0
                       ? Padding(
@@ -107,7 +107,7 @@ class HomePage extends StatelessWidget {
                                                 });
                                               },
                                               icon: const Icon(Icons.search),
-                                              label: const Text("Predict"))
+                                              label: const Text("تنبأ"))
                                         ],
                                       ),
                                     ),
@@ -119,10 +119,10 @@ class HomePage extends StatelessWidget {
                   bottomNavigationBar: BottomNavigationBar(
                     items: const [
                       BottomNavigationBarItem(
-                          label: "My Videos",
+                          label: "فيديوهاتى",
                           icon: Icon(Icons.video_camera_back)),
                       BottomNavigationBarItem(
-                          label: "About us", icon: Icon(Icons.info)),
+                          label: "تعرف علينا", icon: Icon(Icons.info)),
                     ],
                     currentIndex: cubit.currentIndex,
                     onTap: (index) {
@@ -141,7 +141,7 @@ class HomePage extends StatelessWidget {
                                 },
                                 backgroundColor: MyColors.lightGreen,
                                 foregroundColor: Colors.white,
-                                label: "From Gallery",
+                                label: "من المعرض",
                                 child: const Icon(Icons.video_collection)),
                             SpeedDialChild(
                                 onTap: () {
@@ -149,7 +149,7 @@ class HomePage extends StatelessWidget {
                                 },
                                 backgroundColor: MyColors.lightGreen,
                                 foregroundColor: Colors.white,
-                                label: "take Video",
+                                label: "التقط فيديو",
                                 child: const Icon(Icons.camera_enhance))
                           ],
                         )

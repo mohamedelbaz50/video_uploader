@@ -43,7 +43,6 @@ dependencies:
   flick_video_player: ^0.5.0
   dio: ^5.1.2
   conditional_builder_null_safety: ^0.0.6
-  modal_progress_hud_nsn: ^0.4.0
   
 
  
@@ -77,6 +76,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -90,10 +90,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Rubik
+      fonts:
+        - asset: assets/fonts/Rubik-Bold.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
