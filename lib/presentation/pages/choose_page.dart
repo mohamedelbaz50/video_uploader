@@ -21,6 +21,8 @@ class ChoosePage extends StatelessWidget {
           var cubit = AppCubit.get(context);
           return Scaffold(
             appBar: AppBar(
+              title: const Text("Sign Language Translator"),
+              centerTitle: true,
               elevation: 0,
             ),
             drawer: Drawer(
@@ -58,7 +60,7 @@ class ChoosePage extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          "Change Lang",
+                          "Change Lang..",
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         const Spacer(),

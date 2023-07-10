@@ -24,7 +24,11 @@ class AppCubit extends Cubit<AppStates> {
   File? pickedImage;
 
   List<File> videos = [];
-  List<Widget> bottomNavPages = [HomePageForWords(),const ReverseTranslation(), const AboutUsPage()];
+  List<Widget> bottomNavPages = [
+    HomePageForWords(),
+    const ReverseTranslation(),
+    const AboutUsPage()
+  ];
   ImagePicker picker = ImagePicker();
   late VideoPlayerController controller;
   late FlickManager flickManager;

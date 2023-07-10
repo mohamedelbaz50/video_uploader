@@ -4,7 +4,6 @@ import 'package:video_uploader/core/themes/colors.dart';
 import 'package:video_uploader/presentation/cubit/app_cubit.dart';
 import 'package:video_uploader/presentation/cubit/app_states.dart';
 import 'package:video_uploader/presentation/pages/choose_page.dart';
-import 'package:video_uploader/presentation/pages/home_page_for_words.dart';
 import 'package:video_uploader/presentation/widgets/custom_text_form_field.dart';
 
 class LoginPage extends StatelessWidget {

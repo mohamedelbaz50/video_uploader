@@ -20,7 +20,8 @@ ThemeData lightTheme = ThemeData(
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         elevation: 0,
-        titleTextStyle: TextStyle(color: Colors.black)),
+        titleTextStyle: TextStyle(
+            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22)),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         selectedItemColor: MyColors.lightPurple,
         unselectedItemColor: Colors.grey[400]));
