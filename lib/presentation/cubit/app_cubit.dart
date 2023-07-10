@@ -7,9 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
+import 'package:video_uploader/core/cache_helper.dart';
 import 'package:video_uploader/presentation/cubit/app_states.dart';
 import 'package:video_uploader/presentation/pages/about_us_page.dart';
 import 'package:video_uploader/presentation/pages/home_page_for_words.dart';
+import 'package:video_uploader/presentation/pages/reverse_translation.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
@@ -22,7 +24,7 @@ class AppCubit extends Cubit<AppStates> {
   File? pickedImage;
 
   List<File> videos = [];
-  List<Widget> bottomNavPages = [HomePageForWords(), const AboutUsPage()];
+  List<Widget> bottomNavPages = [HomePageForWords(),const ReverseTranslation(), const AboutUsPage()];
   ImagePicker picker = ImagePicker();
   late VideoPlayerController controller;
   late FlickManager flickManager;
@@ -37,6 +39,25 @@ class AppCubit extends Cubit<AppStates> {
   void changeBottomNav(int index) {
     currentIndex = index;
     emit(ChangeBottomNavState());
+  }
+
+  bool isDark = false;
+  changTheme({fromShared}) {
+    if (fromShared != null) {
+      isDark = fromShared!;
+    } else {
+      isDark = !isDark;
+    }
+
+    CacheHelper.setData(key: "isDark", value: isDark).then((value) {
+      emit(ChangeThemeState());
+    });
+  }
+
+  bool langValue = true;
+  changeLang(value) {
+    langValue = value;
+    emit(ChangeLangState());
   }
 
   Future<void> getVideoFromCamera() async {
@@ -172,7 +193,7 @@ class AppCubit extends Cubit<AppStates> {
         "http://10.0.2.2:8000/prediction/number",
         options: Options(
             contentType: 'application/json',
-            sendTimeout: const Duration(seconds: 20)),
+            sendTimeout: const Duration(seconds: 10)),
         data: formData,
       );
       value = response.data;

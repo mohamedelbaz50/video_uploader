@@ -6,6 +6,7 @@ import 'package:video_uploader/presentation/cubit/app_cubit.dart';
 import 'package:video_uploader/presentation/cubit/app_states.dart';
 import 'package:video_uploader/presentation/pages/about_us_page.dart';
 import 'package:video_uploader/presentation/pages/dialog.dart';
+import 'package:video_uploader/presentation/pages/reverse_translation.dart';
 
 import '../../core/themes/colors.dart';
 
@@ -46,7 +47,13 @@ class HomePageForWords extends StatelessWidget {
                           : Container()
                     ],
                     title: Text(
-                        cubit.currentIndex == 0 ? "فيديوهاتى" : "تعرف علينا"),
+                      cubit.currentIndex == 0
+                          ? "فيديوهاتى"
+                          : cubit.currentIndex == 1
+                              ? "ترجمه عكسيه"
+                              : "تعرف علينا",
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
                   ),
                   body: cubit.currentIndex == 0
                       ? Padding(
@@ -65,6 +72,8 @@ class HomePageForWords extends StatelessWidget {
                                     cubit.videoPlay(index: index);
                                   },
                                   child: Card(
+                                    color: Theme.of(context)
+                                        .scaffoldBackgroundColor,
                                     child: Padding(
                                       padding: const EdgeInsets.all(5),
                                       child: Column(
@@ -79,18 +88,21 @@ class HomePageForWords extends StatelessWidget {
                                           ),
                                           const SizedBox(height: 10),
                                           Text(
-                                            cubit.videos[index].path
-                                                .split('/')
-                                                .last,
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 1,
-                                          ),
+                                              cubit.videos[index].path
+                                                  .split('/')
+                                                  .last,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleSmall),
                                           const SizedBox(height: 10),
                                           ElevatedButton.icon(
                                               style: ButtonStyle(
                                                   backgroundColor:
                                                       MaterialStateProperty.all(
-                                                          MyColors.lightGreen)),
+                                                          MyColors
+                                                              .lightPurple)),
                                               onPressed: () {
                                                 cubit
                                                     .uploadVideo(index: index)
@@ -107,7 +119,7 @@ class HomePageForWords extends StatelessWidget {
                                                 });
                                               },
                                               icon: const Icon(Icons.search),
-                                              label: const Text("تنبأ"))
+                                              label: const Text("ترجم"))
                                         ],
                                       ),
                                     ),
@@ -115,12 +127,16 @@ class HomePageForWords extends StatelessWidget {
                             },
                           ),
                         )
-                      : const AboutUsPage(),
+                      : cubit.currentIndex == 1
+                          ? const ReverseTranslation()
+                          : const AboutUsPage(),
                   bottomNavigationBar: BottomNavigationBar(
                     items: const [
                       BottomNavigationBarItem(
                           label: "فيديوهاتى",
                           icon: Icon(Icons.video_camera_back)),
+                           BottomNavigationBarItem(
+                          icon: Icon(Icons.repeat), label: "ترجمه عكسيه"),
                       BottomNavigationBarItem(
                           label: "تعرف علينا", icon: Icon(Icons.info)),
                     ],
@@ -131,7 +147,7 @@ class HomePageForWords extends StatelessWidget {
                   ),
                   floatingActionButton: cubit.currentIndex == 0
                       ? SpeedDial(
-                          backgroundColor: MyColors.lightGreen,
+                          backgroundColor: MyColors.lightPurple,
                           icon: Icons.add_a_photo,
                           activeIcon: Icons.close,
                           children: [
@@ -139,16 +155,20 @@ class HomePageForWords extends StatelessWidget {
                                 onTap: () {
                                   cubit.getVideoFromGallery();
                                 },
-                                backgroundColor: MyColors.lightGreen,
+                                backgroundColor: MyColors.lightPurple,
                                 foregroundColor: Colors.white,
+                                labelStyle: const TextStyle(
+                                    fontSize: 18, color: Colors.black),
                                 label: "من المعرض",
                                 child: const Icon(Icons.video_collection)),
                             SpeedDialChild(
                                 onTap: () {
                                   cubit.getVideoFromCamera();
                                 },
-                                backgroundColor: MyColors.lightGreen,
+                                backgroundColor: MyColors.lightPurple,
                                 foregroundColor: Colors.white,
+                                labelStyle: const TextStyle(
+                                    fontSize: 18, color: Colors.black),
                                 label: "التقط فيديو",
                                 child: const Icon(Icons.camera_enhance))
                           ],

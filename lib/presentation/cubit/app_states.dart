@@ -15,3 +15,7 @@ class GetDataLoadingState extends AppStates {}
 class GetDataSuccessState extends AppStates {}
 
 class GetDataErrorState extends AppStates {}
+
+class ChangeThemeState extends AppStates {}
+
+class ChangeLangState extends AppStates {}

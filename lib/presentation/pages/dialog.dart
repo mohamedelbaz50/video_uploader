@@ -26,7 +26,9 @@ class DialogBuild extends StatelessWidget {
                 child: Text(
                   text,
                   style: const TextStyle(
-                      fontSize: 30, fontWeight: FontWeight.bold),
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
                 ),
               ),
             ),

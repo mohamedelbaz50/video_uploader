@@ -43,6 +43,7 @@ dependencies:
   flick_video_player: ^0.5.0
   dio: ^5.1.2
   conditional_builder_null_safety: ^0.0.6
+  shared_preferences: ^2.2.0
   
 
  
@@ -91,9 +92,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Rubik
+    - family: "Amiri"
       fonts:
-        - asset: assets/fonts/Rubik-Bold.ttf
+        - asset: assets/fonts/Amiri-Bold.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

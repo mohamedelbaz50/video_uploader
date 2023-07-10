@@ -6,6 +6,7 @@ import 'package:video_uploader/presentation/cubit/app_cubit.dart';
 import 'package:video_uploader/presentation/cubit/app_states.dart';
 import 'package:video_uploader/presentation/pages/about_us_page.dart';
 import 'package:video_uploader/presentation/pages/dialog.dart';
+import 'package:video_uploader/presentation/pages/reverse_translation.dart';
 
 class HomePageForChar extends StatelessWidget {
   const HomePageForChar({super.key});
@@ -31,7 +32,14 @@ class HomePageForChar extends StatelessWidget {
                         )
                       : Container()
                 ],
-                title: Text(cubit.currentIndex == 0 ? "صورى" : "تعرف علينا"),
+                title: Text(
+                  cubit.currentIndex == 0
+                      ? "صورى"
+                      : cubit.currentIndex == 1
+                          ? "ترجمه عكسيه"
+                          : "تعرف علينا",
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
               ),
               body: cubit.currentIndex == 0
                   ? Padding(
@@ -61,18 +69,20 @@ class HomePageForChar extends StatelessWidget {
                                       ),
                                       const SizedBox(height: 10),
                                       Text(
-                                        cubit.images[index].path
-                                            .split('/')
-                                            .last,
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 1,
-                                      ),
+                                          cubit.images[index].path
+                                              .split('/')
+                                              .last,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleSmall),
                                       const SizedBox(height: 10),
                                       ElevatedButton.icon(
                                           style: ButtonStyle(
                                               backgroundColor:
                                                   MaterialStateProperty.all(
-                                                      MyColors.lightGreen)),
+                                                      MyColors.lightPurple)),
                                           onPressed: () {
                                             cubit
                                                 .uploadImageForChar(
@@ -91,7 +101,7 @@ class HomePageForChar extends StatelessWidget {
                                             });
                                           },
                                           icon: const Icon(Icons.search),
-                                          label: const Text("تنبأ"))
+                                          label: const Text("ترجم"))
                                     ],
                                   ),
                                 ),
@@ -99,11 +109,15 @@ class HomePageForChar extends StatelessWidget {
                         },
                       ),
                     )
-                  : const AboutUsPage(),
+                  : cubit.currentIndex == 1
+                      ? ReverseTranslation()
+                      : const AboutUsPage(),
               bottomNavigationBar: BottomNavigationBar(
                 items: const [
                   BottomNavigationBarItem(
                       label: "صورى", icon: Icon(Icons.image)),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.repeat), label: "ترجمه عكسيه"),
                   BottomNavigationBarItem(
                       label: "تعرف علينا", icon: Icon(Icons.info)),
                 ],
@@ -114,7 +128,7 @@ class HomePageForChar extends StatelessWidget {
               ),
               floatingActionButton: cubit.currentIndex == 0
                   ? SpeedDial(
-                      backgroundColor: MyColors.lightGreen,
+                      backgroundColor: MyColors.lightPurple,
                       icon: Icons.add_a_photo,
                       activeIcon: Icons.close,
                       children: [
@@ -122,17 +136,21 @@ class HomePageForChar extends StatelessWidget {
                             onTap: () {
                               cubit.getImageFromGallery();
                             },
-                            backgroundColor: MyColors.lightGreen,
+                            backgroundColor: MyColors.lightPurple,
                             foregroundColor: Colors.white,
                             label: "من المعرض",
+                            labelStyle: const TextStyle(
+                                fontSize: 18, color: Colors.black),
                             child: const Icon(Icons.photo)),
                         SpeedDialChild(
                             onTap: () {
-                              cubit.getImageFromGallery();
+                              cubit.getImageFromCamera();
                             },
-                            backgroundColor: MyColors.lightGreen,
+                            backgroundColor: MyColors.lightPurple,
                             foregroundColor: Colors.white,
                             label: "التقط صورة",
+                            labelStyle: const TextStyle(
+                                fontSize: 18, color: Colors.black),
                             child: const Icon(Icons.photo_camera))
                       ],
                     )
