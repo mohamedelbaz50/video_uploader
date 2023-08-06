@@ -11,6 +11,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
   bool isDark = false;
+  // ignore: unnecessary_null_comparison
   CacheHelper.getData(key: "isDark") != null
       ? isDark = CacheHelper.getData(key: "isDark")
       : isDark = false;

@@ -6,6 +6,7 @@ import 'package:video_uploader/presentation/cubit/app_states.dart';
 import 'package:video_uploader/presentation/pages/choose_page.dart';
 import 'package:video_uploader/presentation/widgets/custom_text_form_field.dart';
 
+// ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();

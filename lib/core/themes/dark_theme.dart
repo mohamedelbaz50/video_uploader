@@ -8,7 +8,7 @@ ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: MyColors.darkBackGround,
     focusColor: Colors.white,
     textTheme: const TextTheme(
-        titleSmall: TextStyle(fontSize: 18, color: Colors.white),
+        titleSmall: TextStyle(fontSize: 18, color: Colors.black),
         bodySmall: TextStyle(
             color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         bodyMedium: TextStyle(

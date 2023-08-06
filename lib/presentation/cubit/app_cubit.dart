@@ -119,6 +119,7 @@ class AppCubit extends Cubit<AppStates> {
         data: formData,
       );
       if (response.statusCode == 200) {
+        print(response.data);
         response.data.forEach((key, value) {
           doubleMap[key] = double.parse(value);
         });
