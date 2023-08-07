@@ -23,5 +23,7 @@ ThemeData lightTheme = ThemeData(
         titleTextStyle: TextStyle(
             color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22)),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        showSelectedLabels: true,
+        unselectedLabelStyle: TextStyle(color: Colors.black, fontSize: 16),
         selectedItemColor: MyColors.lightPurple,
         unselectedItemColor: Colors.grey[400]));

@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:video_uploader/presentation/cubit/app_states.dart';
 
 class DialogBuild extends StatelessWidget {
-  const DialogBuild({required this.state, required this.text});
+  DialogBuild({
+    required this.state,
+    required this.text,
+  });
   final AppStates state;
   final String text;
 

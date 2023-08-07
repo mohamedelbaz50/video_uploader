@@ -15,105 +15,52 @@ class ChoosePage extends StatelessWidget {
     return SafeArea(
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {
-          // TODO: implement listener
         },
         builder: (context, state) {
-          var cubit = AppCubit.get(context);
           return Scaffold(
-            appBar: AppBar(
-              title: const Text("Sign Language Translator"),
-              centerTitle: true,
-              elevation: 0,
-            ),
-            drawer: Drawer(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  const DrawerHeader(
-                      child: Icon(
-                    Icons.settings,
-                    size: 70,
-                    color: Colors.grey,
-                  )),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Row(
-                      children: [
-                        Text(
-                          "Change theme",
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                        const Spacer(),
-                        InkWell(
-                            onTap: () {
-                              cubit.changTheme();
-                            },
-                            child: Icon(
-                              Icons.brightness_4_outlined,
-                              color: Theme.of(context).focusColor,
-                            ))
-                      ],
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // ignore: prefer_const_constructors
+                    Text(": ماذا تريد أن تترجم ",
+                        style: Theme.of(context).textTheme.bodyMedium),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 14,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Row(
-                      children: [
-                        Text(
-                          "Change Lang..",
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                        const Spacer(),
-                        Icon(
-                          Icons.language,
-                          color: Theme.of(context).focusColor,
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            body: Padding(
-              padding: const EdgeInsets.all(30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // ignore: prefer_const_constructors
-                  Text(": ماذا تريد أن تترجم ",
-                      style: Theme.of(context).textTheme.bodyMedium),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 14,
-                  ),
-                  buildItem(
-                      context: context,
-                      text: "رقم",
-                      ontap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const HomePageForNumbers()));
-                      }),
-                  buildItem(
-                      context: context,
-                      text: "حرف",
-                      ontap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomePageForChar()));
-                      }),
-                  buildItem(
-                      context: context,
-                      text: "كلمه",
-                      ontap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomePageForWords()));
-                      })
-                ],
+                    buildItem(
+                        context: context,
+                        text: "رقم",
+                        ontap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const HomePageForNumbers()));
+                        }),
+                    buildItem(
+                        context: context,
+                        text: "حرف",
+                        ontap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const HomePageForChar()));
+                        }),
+                    buildItem(
+                        context: context,
+                        text: "كلمه",
+                        ontap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePageForWords()));
+                        })
+                  ],
+                ),
               ),
             ),
           );

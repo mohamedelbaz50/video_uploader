@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:video_uploader/core/themes/colors.dart';
 import 'package:video_uploader/presentation/cubit/app_cubit.dart';
 import 'package:video_uploader/presentation/cubit/app_states.dart';
-import 'package:video_uploader/presentation/pages/choose_page.dart';
+import 'package:video_uploader/presentation/pages/home_Layout.dart';
 import 'package:video_uploader/presentation/widgets/custom_text_form_field.dart';
 
 // ignore: must_be_immutable
@@ -18,7 +18,6 @@ class LoginPage extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {
-        // TODO: implement listener
       },
       builder: (context, state) {
         return SafeArea(
@@ -112,7 +111,7 @@ class LoginPage extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const ChoosePage()));
+                                            const LayoutPage()));
                               },
                               child: Container(
                                 width: double.infinity,

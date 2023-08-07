@@ -44,6 +44,9 @@ dependencies:
   dio: ^5.1.2
   conditional_builder_null_safety: ^0.0.6
   shared_preferences: ^2.2.0
+  flutter_launcher_icons: ^0.13.1
+  another_flutter_splash_screen: ^1.1.4
+  
   
 
  
@@ -55,6 +58,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/launcher_icon.png"
+  min_sdk_android: 21    
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

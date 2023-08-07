@@ -10,7 +10,8 @@ import 'package:video_player/video_player.dart';
 import 'package:video_uploader/core/cache_helper.dart';
 import 'package:video_uploader/presentation/cubit/app_states.dart';
 import 'package:video_uploader/presentation/pages/about_us_page.dart';
-import 'package:video_uploader/presentation/pages/home_page_for_words.dart';
+import 'package:video_uploader/presentation/pages/choose_page.dart';
+import 'package:video_uploader/presentation/pages/learn_page.dart';
 import 'package:video_uploader/presentation/pages/reverse_translation.dart';
 
 class AppCubit extends Cubit<AppStates> {
@@ -24,9 +25,16 @@ class AppCubit extends Cubit<AppStates> {
   File? pickedImage;
 
   List<File> videos = [];
+  List<String> titles = [
+    "اختر النوع",
+    "الترجمه العكسيه",
+    "تعلم لغة الاشاره",
+    "تعرف علينا"
+  ];
   List<Widget> bottomNavPages = [
-    HomePageForWords(),
+    ChoosePage(),
     const ReverseTranslation(),
+    const LearnPage(),
     const AboutUsPage()
   ];
   ImagePicker picker = ImagePicker();
@@ -169,6 +177,8 @@ class AppCubit extends Cubit<AppStates> {
       emit((VideoNotPickedFromGalleryState()));
     }
   }
+
+  bb() {}
 
   Future<void> getImageFromGallery() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
