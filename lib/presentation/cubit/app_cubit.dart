@@ -26,7 +26,7 @@ class AppCubit extends Cubit<AppStates> {
 
   List<File> videos = [];
   List<String> titles = [
-    "اختر النوع",
+    " ترجمه",
     "الترجمه العكسيه",
     "تعلم لغة الاشاره",
     "تعرف علينا"

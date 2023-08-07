@@ -75,7 +75,7 @@ class LayoutPage extends StatelessWidget {
             bottomNavigationBar: BottomNavigationBar(
               items: const [
                 BottomNavigationBarItem(
-                    label: "اختر النوع", icon: Icon(Icons.type_specimen)),
+                    label: " ترجمه", icon: Icon(Icons.type_specimen)),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.repeat), label: "ترجمه عكسيه"),
                 BottomNavigationBarItem(
